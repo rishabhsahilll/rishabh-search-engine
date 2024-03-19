@@ -1,0 +1,150 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+
+::selection {
+    color: #fff;
+    background: #664AFF;
+}
+.wrapper-search {
+    margin: 5px auto;
+    transform-style: preserve-3d;
+    position: relative;
+    text-align: none;
+    box-shadow: 20px 20px 50px rgba(0, 0, 0, 0.7);
+    overflow: hidden;
+    border-radius: 25px;
+    background: rgba(255, 255, 255, 0.1);
+    border-top: 1px solid rgba(255, 255, 255, 0.5);
+    border-left: 1px solid rgba(255, 255, 255, 0.5);
+    color: black;
+    padding: 2em;
+    max-width: 420px;
+    transform-style: preserve-3d;
+    backdrop-filter: blur(5px);
+}
+
+.wrapper-searchresult {
+    margin: 5px auto;
+    transform-style: preserve-3d;
+    position: relative;
+    text-align: none;
+    box-shadow: 20px 20px 50px rgba(0, 0, 0, 0.7);
+    overflow: hidden;
+    border-radius: 25px;
+    background: rgba(255, 255, 255, 0.1);
+    border-top: 1px solid rgba(255, 255, 255, 0.5);
+    border-left: 1px solid rgba(255, 255, 255, 0.5);
+    color: black;
+    padding: 2em;
+    width: 100%;
+    transform-style: preserve-3d;
+    backdrop-filter: blur(5px);
+}
+
+.wrapper-search .search-input-result {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    transform: translateZ(30px);
+}
+
+
+.search-input-result input {
+    height: 55px;
+    border: none;
+    outline: none;
+    padding: 0.5em 1em;
+    border-radius: 24px;
+    background: black;
+    color: black;
+    font-family: inherit;
+    font-size: 120%;
+    width: calc(100%);
+    background: rgba(0, 0, 0, 0.1);
+    transform: translateZ(30px);
+    border-top: 1px solid rgba(255, 255, 255, 0.8);
+    border-left: 1px solid rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(3px);
+}
+
+.search-input-result input:hover {
+    height: 55px;
+    border: white;
+    background: white;
+    font-size: 120%;
+    width: calc(100%);
+    background: rgba(0, 0, 0, 0.1);
+    border-top: 1px solid rgba(3, 0, 0, 0.8);
+    border-left: 1px solid rgba(3, 0, 0, 0.8);
+}
+
+.search-input-result .autocom-box {
+    padding: 0;
+    opacity: 0;
+    pointer-events: none;
+    max-height: 280px;
+    overflow-y: auto;
+}
+
+.search-input-result .active .autocom-box {
+    padding: 10px 8px;
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.autocom-box li {
+    list-style: none;
+    padding: 8px 12px;
+    display: none;
+    width: 100%;
+    cursor: default;
+    border-radius: 3px;
+}
+
+.search-input-result.active .autocom-box li {
+    display: block;
+}
+
+.autocom-box li:hover {
+    background: #efefef;
+}
+
+.search-input-result .icon {
+    position: absolute;
+    right: 40px;
+    top: 0px;
+    height: 55px;
+    width: 55px;
+    text-align: center;
+    line-height: 55px;
+    font-size: 20px;
+    color: #000000;
+    cursor: pointer;
+}
+
+.button {
+    color: white;
+    background-color: white;
+}
+
+.icon {
+    width: 35px;
+    height: 40px;
+    font-size: 18px;
+    margin: 0px;
+    background: rgba(0, 0, 0, 0.1);
+    transform: translateZ(30px);
+    border-top: 1px solid rgba(255, 255, 255, 0.8);
+    border-left: 1px solid rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(3px);
+    opacity: 0.8;
+    transform-style: preserve-3d;
+    transition: 0.2s ease-in-out;
+    transform: translateZ(30px);
+}
+
+.icon:hover {
+    border: white;
+    color: white;
+    opacity: 1.9;
+}

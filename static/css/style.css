@@ -1,0 +1,148 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+::selection {
+    color: #fff;
+    background: #664AFF;
+}
+
+.wrapper {
+    max-width: 450px;
+    margin: 5px auto;
+    transform-style: preserve-3d;
+    position: relative;
+    text-align: none;
+    box-shadow: 20px 20px 50px rgba(0, 0, 0, 0.7);
+    overflow: hidden;
+    border-radius: 25px;
+    background: rgba(255, 255, 255, 0.1);
+    border-top: 1px solid rgba(255, 255, 255, 0.5);
+    border-left: 1px solid rgba(255, 255, 255, 0.5);
+    color: black;
+    padding: 2em;
+    width: 100%;
+    max-width: 420px;
+    transform-style: preserve-3d;
+    backdrop-filter: blur(5px);
+}
+
+.wrapper .search-input {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    transform: translateZ(30px);
+}
+
+.search-input input {
+    height: 55px;
+    border: none;
+    outline: none;
+    padding: 0.5em 1em;
+    border-radius: 24px;
+    background: black;
+    color: black;
+    font-family: inherit;
+    font-size: 120%;
+    width: calc(100%);
+    background: rgba(0, 0, 0, 0.1);
+    transform: translateZ(30px);
+    border-top: 1px solid rgba(255, 255, 255, 0.8);
+    border-left: 1px solid rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(3px);
+}
+
+.search-input input:hover {
+    height: 55px;
+    border: white;
+    background: white;
+    font-size: 120%;
+    width: calc(100%);
+    background: rgba(207, 191, 191, 0.479);
+    border-top: 1px solid rgba(0, 0, 0, 0.8);
+    border-left: 1px solid rgba(0, 0, 0, 0.8);
+}
+
+.search-input .autocom-box {
+    padding: 0;
+    opacity: 0;
+    pointer-events: none;
+    max-height: 280px;
+    overflow-y: auto;
+}
+
+.search-input.active .autocom-box {
+    padding: 10px 8px;
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.autocom-box li {
+    list-style: none;
+    padding: 8px 12px;
+    display: none;
+    width: 100%;
+    cursor: default;
+    border-radius: 3px;
+}
+
+.search-input.active .autocom-box li {
+    display: block;
+}
+
+.autocom-box li:hover {
+    background: #efefef;
+}
+
+.search-input .icon {
+    position: absolute;
+    right: 0px;
+    top: 0px;
+    height: 55px;
+    width: 55px;
+    text-align: center;
+    line-height: 55px;
+    font-size: 20px;
+    color: #000000;
+    cursor: pointer;
+}
+
+
+/* ------------------------------------ Type Animation ------------------------------------------- */
+
+/* .container {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(https://source.unsplash.com/1280x720/?girl);
+    background-position: center;
+      background-size: cover;
+    height: 650px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.container p {
+    font-size: 3rem;
+    padding: 0.5rem;
+    font-weight: bold;
+    letter-spacing: 0.1rem;
+    text-align: center;
+    overflow: hidden;
+} */
+/* .container p span.typed-text {
+    font-weight: normal;
+    color: #dd7732;
+} */
+.container p span.cursor {
+    display: inline-block;
+    background-color: #ccc;
+    margin-left: 0.1rem;
+    width: 3px;
+    animation: blink 1s infinite;
+}
+.container p span.cursor.typing {
+    animation: none;
+}
+@keyframes blink {
+    0%  { background-color: #ccc; }
+    49% { background-color: #ccc; }
+    50% { background-color: transparent; }
+    99% { background-color: transparent; }
+    100%  { background-color: #ccc; }
+}

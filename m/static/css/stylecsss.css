@@ -1,0 +1,206 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+html{
+    scroll-behavior: smooth;
+}
+
+body {
+    background-image: url(https://source.unsplash.com/user/erondu/1600x900);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-color: #26547C;
+}
+
+header {
+    width: 100%;
+}
+
+ul {
+    list-style: none;
+}
+
+#nav_bar {
+    float: right;
+}
+
+#nav_bar li {
+    display: inline-block;
+    padding: 08px;
+}
+
+#nav_bar #sign_in {
+    background-color: blue;
+    padding: 7px 15px;
+    border-radius: 5.9px;
+    margin-right: 25px;
+    font-weight: bold;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+li.nav-links a:hover {
+    text-decoration: underline;
+}
+
+#sign_in:hover {
+    color: #fff;
+    border-right: black;
+    border-top: black;
+    box-shadow: 1px 1px 8px whitesmoke;
+}
+
+#sign_in {
+    color: #fff;
+    border-right: black;
+    border-top: black;
+    box-shadow: 2px 3px 0px 0px whitesmoke;
+}
+
+.google #google_logo {
+    text-align: center;
+    display: block;
+    margin: 0 auto;
+    clear: both;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    transform-style: preserve-3d;
+    border-radius: 5px;
+}
+.google_logo {
+        backdrop-filter: blur(20px);
+}
+
+/* .google #google_logo #clicktomove:hover{
+    box-shadow: 0px 0px 8px whitesmoke;
+} */
+
+.button {
+    color: white;
+    background-color: white;
+}
+
+.icon {
+    width: 35px;
+    height: 40px;
+    font-size: 18px;
+    margin: 0px;
+    background: rgba(0, 0, 0, 0.1);
+    border-top: 1px solid rgba(255, 255, 255, 0.8);
+    border-left: 1px solid rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(3px);
+    opacity: 0.8;
+    transform-style: preserve-3d;
+    transition: 0.2s ease-in-out;
+    transform: translateZ(30px);
+}
+
+.icon:hover {
+    border: white;
+    color: white;
+    opacity: 1.9;
+}
+
+#nav_bar_search {
+    text-align: center;
+}
+
+#nav_bar_search li {
+    display: inline-block;
+    padding: 08px;
+}
+
+#youtube-searchq{
+    font-size:300%;
+    color: red;
+}
+#map-searchq{
+    font-size:48px;
+    color:rgb(255, 0, 0);
+    border-bottom: solid rgb(16, 189, 0);
+}
+#wikipeida-searchq-q{
+    font-size:250%;
+    color:black;
+}
+
+#wikipeida-searchq-q:hover{
+    color: white;
+}
+
+#map-searchq:hover{
+    color:rgb(104, 4, 4);
+    border-bottom: solid rgb(1, 73, 19);
+}
+
+#youtube-searchq:hover{
+    color: darkred;
+}
+#youtube-search-q{
+    /* background-color: #0763f8fd; */
+    border-radius: 5px;
+    /* border: solid 0.1px white; */
+    border-left: black;
+    border-top: black;
+    /* box-shadow: 1.8px 1.8px 0px rgba(236, 242, 248, 0.931); */
+}
+#youtube-search-q:hover{
+    /* background-color: #084fc2fd; */
+    border-bottom: solid 0.1px white;
+    box-shadow: 0px 0px 7px rgba(236, 242, 248, 0.931);
+}
+#map-search{
+    /* background-color: #0763f8fd; */
+    border-radius: 5px;
+    /* border: solid 0.1px white; */
+    border-left: black;
+    border-top: black;
+    /* box-shadow: 1.8px 1.8px 0px rgba(236, 242, 248, 0.931); */
+}
+#map-search:hover{
+    /* background-color: #084fc2fd; */
+    border-bottom: solid 0.1px white;
+    box-shadow: 0px 0px 7px rgba(236, 242, 248, 0.931);
+}
+#wiki-search{
+    /* background-color: #0763f8fd; */
+    border-radius: 5px;
+    /* border: solid 0.1px white; */
+    border-left: black;
+    border-top: black;
+    /* box-shadow: 1.8px 1.8px 0px rgba(236, 242, 248, 0.931); */
+}
+#wiki-search:hover{
+    /* background-color: #084fc2fd; */
+    border-bottom: solid 0.1px white;
+    box-shadow: 0px 0px 7px rgba(236, 242, 248, 0.931);
+}
+
+#music-searchq-q{
+    font-size:250%;
+    color:rgb(5, 62, 168);
+}
+#music-searchq-q:hover{
+    font-size:250%;
+    color:rgb(1, 27, 75);
+}
+#music-search-q{
+    background-color: #0763f8fd;
+    border-radius: 5px;
+    border: solid 0.1px white;
+    border-left: black;
+    border-top: black;
+}
+#music-search-q:hover{
+    box-shadow: 1.8px 1.8px 0px rgba(236, 242, 248, 0.931);
+    border-bottom: solid 0.1px white;
+}

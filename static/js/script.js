@@ -146,11 +146,60 @@ document.getElementById('frmsearch').onsubmit = function() {
     query = document.getElementById('textSearch').value;
     query = query.replace('/<g',"&lt;").replace('/>/g',"&gt;");
     if(query==false){
-        
         console.log("please enter your query");
         return false
     }
+    if(query.toLowerCase().includes("*google")) {
+        let newQuery = query.toLowerCase().replace("*google", "").trim();
+        window.location = 'https://www.google.com/search?q=' + newQuery;
+        return false; // Prevent default action
+    }
+
+    if(query.toLowerCase().includes("*bing")) {
+        let newQuery = query.toLowerCase().replace("*bing", "").trim();
+        window.location = 'https://www.bing.com/search?q=' + newQuery;
+        return false; // Prevent default action
+    }
+
+    if(query.toLowerCase().includes("*map")) {
+        let newQuery = query.toLowerCase().replace("*map", "").trim();
+        window.location = 'https://www.google.com/maps/place' + newQuery;
+        return false; // Prevent default action
+    }
+
+    if(query.toLowerCase().includes("*youtube") || query.toLowerCase().includes("*yt")) {
+        let newQuery = query.toLowerCase().replace("*youtube", "").trim();
+        let newQuery2 =  newQuery.toLowerCase().replace("*yt", "").trim();
+        if(newQuery2==false){
+            window.location = 'https://www.youtube.com';
+            return false
+        }
+        window.location = 'https://www.youtube.com/results?search_query=' + newQuery2;
+        return false; // Prevent default action
+    }
+
+    if(query.toLowerCase().includes("*wikipedia") || query.toLowerCase().includes("*wiki")) {
+        let newQuery = query.toLowerCase().replace("*wikipedia", "").trim();
+        let newQuery2 =  newQuery.toLowerCase().replace("*wiki", "").trim();
+        if(newQuery2==false){
+            window.location = 'https://en.wikipedia.org';
+            return false
+        }
+        window.location = 'https://en.wikipedia.org/wiki/' + newQuery2;
+        return false; // Prevent default action
+    }
     
+    if(query.toLowerCase().includes("*translate") || query.toLowerCase().includes("*trans")) {
+        let newQuery = query.toLowerCase().replace("*translate", "").trim();
+        let newQuery2 =  newQuery.toLowerCase().replace("*trans", "").trim();
+        if(newQuery2==false){
+            window.location = 'https://translate.google.com/';
+            return false
+        }
+        window.location = 'https://translate.google.com/?sl=en&tl=hi&text=' + newQuery2;
+        return false; // Prevent default action
+    }
+
     else{
         window.location = 'search?q=' + query
         return false;

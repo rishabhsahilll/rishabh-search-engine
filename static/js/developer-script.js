@@ -1,50 +1,31 @@
-// function rishabhSearch() {
-//   var text = document.getElementById("search").value;
-//   var cleanQuery = text.replace(" ", "+", text);
-//   var url = 'https://www.rishabhsahil.ml/search?q=' + cleanQuery;
-//   window.location.href = url;
-// }
+function wikipediasearch(){
+    query = document.getElementById('search').value;
+    query = query.replace('/<g',"&lt;").replace('/>/g',"&gt;");
+    if(query==false){
+        
+        console.log("please enter your query");
+        window.location = 'https://wikipedia.org'
+        return false;
+    }
+    else{
+        window.location = 'https://en.wikipedia.org/wiki/' + query
+        return false;
 
-function rishabhSearch() {
+    }
+
+
+}    
+
+function onlinegamesearch() {
     query = document.getElementById('search').value;
     query = query.replace('/<g',"&lt;").replace('/>/g',"&gt;");
     if(query==false){
         console.log("please enter your query");
+        window.location = 'https://www.crazygames.com'
         return false;
     }
     else{
-        window.location = 'https://www.rishabhsahil.ml/search?q=' + query
-        return false;
-
-    }
-} 
-
-
-function translateSearch() {
-    query = document.getElementById('search').value;
-    query = query.replace('/<g',"&lt;").replace('/>/g',"&gt;");
-    if(query==false){
-        window.location = 'https://translate.google.com/'
-        return false;
-    }
-    else{
-        window.location = 'https://translate.google.com/?sl=en&tl=hi&text=' + query + "&op=translate"
-        return false;
-
-    }
-} 
-
-
-function googleSearch() {
-    query = document.getElementById('search').value;
-    query = query.replace('/<g',"&lt;").replace('/>/g',"&gt;");
-    if(query==false){
-        console.log("please enter your query");
-        window.location = 'https://www.google.com'
-        return false;
-    }
-    else{
-        window.location = 'https://www.google.com/search?q=' + query
+        window.location = 'https://www.crazygames.com/search?q=' + query
         return false;
 
     }
@@ -65,33 +46,193 @@ function imageSearch() {
     }
 } 
 
-function rishabhsearchvoice() {
-var recognition = new webkitSpeechRecognition();
-recognition.lang = "en-GB";
+function imageSearch_2() {
+    query = document.getElementById('gsc-i-id1').value;
+    query = query.replace('/<g',"&lt;").replace('/>/g',"&gt;");
+    if(query==false){
+        console.log("please enter your query");
+        window.location = 'https://unsplash.com'
+        return false;
+    }
+    else{
+        window.location = 'https://unsplash.com/s/photos/' + query
+        return false;
 
-recognition.onresult = function(event) {
-    // console.log(event);
-    query = document.getElementById('search').value = event.results[0][0].transcript;
-    window.location = 'https://www.rishabhsahil.ml/search?q=' + query
-    return false;
+    }
 }
-recognition.start();
+
+function wikipediasearchq(){
+    query = document.getElementById('gsc-i-id1').value;
+    query = query.replace('/<g',"&lt;").replace('/>/g',"&gt;");
+    if(query==false){
+        
+        console.log("please enter your query");
+        window.location = 'https://wikipedia.org'
+        return false;
+    }
+    else{
+        window.location = 'https://en.wikipedia.org/wiki/' + query
+        return false;
+
+    }
+}    
+
+function record() {
+    var recognition = new webkitSpeechRecognition();
+    recognition.lang = "en-GB";
+    
+    recognition.onresult = function(event) {
+        // console.log(event);
+        query = document.getElementById('search').value = event.results[0][0].transcript;
+        window.location = 'search?q=' + query
+        return false;
+    }
+    recognition.start();
+    
 
 }
+
+function mapsearch(){
+    query = document.getElementById('search').value;
+    query = query.replace('/<g',"&lt;").replace('/>/g',"&gt;");
+    if(query==false){
+        
+        console.log("please enter your query");
+        window.location = 'https://www.google.com/maps'
+        return false;
+    }
+    else{
+        window.location = 'https://www.google.com/maps/place/' + query
+        return false;
+
+    }
+} 
 
 function youtubesearch(){
-query = document.getElementById('search').value;
-query = query.replace('/<g',"&lt;").replace('/>/g',"&gt;");
-if(query==false){
-    console.log("please enter your query");
-    window.location = 'https://www.youtube.com'
-    return false;
-}
-else{
-    window.location = 'https://www.youtube.com/results?search_query=' + query
-    return false;
+    query = document.getElementById('search').value;
+    query = query.replace('/<g',"&lt;").replace('/>/g',"&gt;");
+    if(query==false){
+        console.log("please enter your query");
+        window.location = 'https://www.youtube.com'
+        return false;
+    }
+    else{
+        window.location = 'https://www.youtube.com/results?search_query=' + query
+        return false;
 
+    }
+} 
+
+function songm(){
+    query = document.getElementById('search').value;
+    query = query.replace('/<g',"&lt;").replace('/>/g',"&gt;");
+    if(query==false){
+            
+        console.log("please enter your query");
+        window.location = 'https://gaana.com/'
+        return false;
+    }
+    else{
+        window.location = 'https://gaana.com/search/' + query
+        return false;
+
+    }
+} 
+
+
+function mapsearchq(){
+    query = document.getElementById('gsc-i-id1').value;
+    query = query.replace('/<g',"&lt;").replace('/>/g',"&gt;");
+    if(query==false){
+        
+        console.log("please enter your query");
+        window.location = 'https://www.google.com/maps'
+        return false;
+    }
+    else{
+        window.location = 'https://www.google.com/maps/place/' + query
+        return false;
+
+    }
+} 
+
+function youtubesearchq(){
+    query = document.getElementById('gsc-i-id1').value;
+    query = query.replace('/<g',"&lt;").replace('/>/g',"&gt;");
+    if(query==false){
+        
+        console.log("please enter your query");
+        window.location = 'https://www.youtube.com'
+        return false;
+    }
+    else{
+        window.location = 'https://www.youtube.com/results?search_query=' + query
+        return false;
+
+    }
+} 
+
+function songmq(){
+    query = document.getElementById('gsc-i-id1').value;
+    query = query.replace('/<g',"&lt;").replace('/>/g',"&gt;");
+    if(query==false){
+            
+        console.log("please enter your query");
+        window.location = 'https://gaana.com/'
+        return false;
+    }
+    else{
+        window.location = 'https://gaana.com/search/' + query
+        return false;
+
+    }
+} 
+
+function rishabhsearch(){
+    query = document.getElementById('search').value;
+    query = query.replace('/<g',"&lt;").replace('/>/g',"&gt;");
+    if(query==false){
+        
+        console.log("please enter your query");
+        return false
+    }
+    
+    else{
+        window.location = 'search?q=' + query
+        return false;
+
+    }
 }
+ 
+
+function translateSearch() {
+    query = document.getElementById('search').value;
+    query = query.replace('/<g',"&lt;").replace('/>/g',"&gt;");
+    if(query==false){
+        window.location = 'https://translate.google.com/'
+        return false;
+    }
+    else{
+        window.location = 'https://translate.google.com/?sl=en&tl=hi&text=' + query + "&op=translate"
+        return false;
+
+    }
+} 
+
+
+function imageSearch() {
+    query = document.getElementById('search').value;
+    query = query.replace('/<g',"&lt;").replace('/>/g',"&gt;");
+    if(query==false){
+        console.log("please enter your query");
+        window.location = 'https://unsplash.com'
+        return false;
+    }
+    else{
+        window.location = 'https://unsplash.com/s/photos/' + query
+        return false;
+
+    }
 } 
 
 function githubsearch() {
@@ -140,16 +281,16 @@ else{
 }
 } 
 
-function instasearch() {
+function wikisearch() {
 query = document.getElementById('search').value;
 query = query.replace('/<g',"&lt;").replace('/>/g',"&gt;");
 if(query==false){
     console.log("please enter your query");
-    window.location = 'https://instagram.com'
+    window.location = 'https://www.wikipedia.org/'
     return false;
 }
 else{
-    window.location = 'https://instagram.com/' + query
+    window.location = 'hhttps://en.wikipedia.org/wiki/' + query
     return false;
 
 }

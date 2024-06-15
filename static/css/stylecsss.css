@@ -11,7 +11,7 @@ html{
 }
 
 body {
-    background-image: url('https://source.unsplash.com/user/erondu/1600x900'); 
+    background-image: url('https://picsum.photos/1600/900/?blur=2');
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;

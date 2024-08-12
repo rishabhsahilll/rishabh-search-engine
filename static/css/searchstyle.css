@@ -10,13 +10,15 @@ html{
     scroll-behavior: smooth;
 }
 
-/* body {
-    background-image: url(https://source.unsplash.com/user/erondu/1600x900);
+body {
+/*     background-image: url(https://source.unsplash.com/user/erondu/1600x900); */
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
-    background-color: #26547C;
-} */
+/*     background-color: #26547C; */
+    background-color: #202124;
+
+}
 
 header {
     width: 100%;

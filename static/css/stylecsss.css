@@ -15,8 +15,8 @@ body {
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
-   background-color: #26547C;
-    background-color: #202124;
+/*    background-color: #26547C; */
+    background-color: #664aff;
 }
 
 header {

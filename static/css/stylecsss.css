@@ -64,7 +64,7 @@ li.nav-links a:hover {
     color: #fff;
     border-right: black;
     border-top: black;
-    box-shadow: 2px 3px 0px 0px whitesmoke;
+/*     box-shadow: 2px 3px 0px 0px whitesmoke; */
 }
 
 .google #google_logo {

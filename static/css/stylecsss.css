@@ -57,7 +57,7 @@ li.nav-links a:hover {
     color: #fff;
     border-right: black;
     border-top: black;
-    box-shadow: 1px 1px 8px whitesmoke;
+/*     box-shadow: 1px 1px 8px whitesmoke; */
 }
 
 #sign_in {

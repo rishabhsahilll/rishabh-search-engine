@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Netra App Details | R.S-Store</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
+<style>
+        .app-banner {
+            height: 200px;
+            background: linear-gradient(136deg, #818181, #212020);
+            color: white;
+            display: flex;
+            align-items: center;
+            padding: 1rem;
+            justify-content: space-between;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .app-icon {
+            width: 100px;
+            height: 100px;
+            border-radius: 20%;
+            border: 2px solid white;
+            margin-right: 1rem;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .app-title {
+            font-size: 1.8rem;
+            font-weight: bold;
+        }
+
+        .rating-stars {
+            color: gold;
+        }
+
+        .screenshots {
+            display: flex;
+            gap: 10px;
+            justify-content: start;
+            margin-top: 1rem;
+            overflow-x: auto;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+        }
+
+        .screenshots::-webkit-scrollbar {
+            display: none;
+        }
+
+        .screenshots img {
+            max-height: 200px;
+            margin: 0.5rem;
+            border-radius: 10px;
+            object-fit: cover;
+            cursor: pointer;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+        }
+
+        .modal-fullscreen img {
+            width: 100%;
+            height: auto;
+        }
+
+        .description {
+            line-height: 1.6;
+        }
+
+        .developers a {
+            text-decoration: none;
+            color: #007bff;
+        }
+
+        .download-btn {
+            align-self: center;
+            background: linear-gradient(135deg, #b6b6b6, #000000);
+            border: none;
+            color: white;
+        }
+
+        .download-btn:hover {
+           align-self: center;
+           background: linear-gradient(135deg, #000000, #b6b6b6);
+	   color: white;
+	   border: none;
+           text-decoration: none;
+        }
+
+        .features-list li {
+            margin-bottom: 0.5rem;
+        }
+
+        .features-list li::before {
+            content: "✔";
+            color: green;
+            margin-right: 0.5rem;
+        }
+
+        /* Full-screen modal styling */
+        .modal-fullscreen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.8);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1050;
+        }
+
+        .modal-fullscreen img {
+            max-width: 90%;
+            max-height: 90%;
+            margin: 0 auto;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 30px;
+            color: white;
+            background-color: transparent;
+            border: none;
+            cursor: pointer;
+        }
+
+        .close-btn:hover {
+            color: #ff5722;
+        }
+
+        .modal-fullscreen .carousel-control-prev,
+        .modal-fullscreen .carousel-control-next {
+            color: white;
+        }
+    </style>
+
+</head>
+<body>
+    <div class="app-banner">
+        <div class="d-flex">
+            <img src="https://github.com/rishabhsahilll/rishabh-search-engine/blob/main/netra-app-ss/logo.png?raw=true" alt="App Icon" class="app-icon">
+            <div>
+                <div class="app-title">Netra</div>
+                <div class="rating">
+                    <span class="rating-stars">&#9733;&#9733;&#9733;&#9733;&#9734;</span>
+                    <span>(4.2)</span>
+                </div>
+                <div>
+                    Anti Social Media &#8226; 
+                    <a href="https://www.instagram.com/code.rsy/" target="_blank" style="color: white; text-decoration: none;">Netra Developers</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Move the Download button below this section -->
+    <div class="container text-center my-4">
+	<a href="netra-app-apk/new/Netra_2_1.5.apk" download>
+        	<button class="btn btn-lg download-btn">Download</button>
+	</a>
+    </div>
+
+    <div class="container my-4">
+        <h5>Screenshots</h5>
+        <div class="screenshots">
+            <img src="https://github.com/rishabhsahilll/rishabh-search-engine/blob/main/netra-app-ss/1.jpeg?raw=true" alt="Screenshot 1" onclick="openModal(0)">
+            <img src="https://github.com/rishabhsahilll/rishabh-search-engine/blob/main/netra-app-ss/2.jpeg?raw=true" alt="Screenshot 2" onclick="openModal(1)">
+            <img src="https://github.com/rishabhsahilll/rishabh-search-engine/blob/main/netra-app-ss/3.jpeg?raw=true" alt="Screenshot 3" onclick="openModal(2)">
+            <img src="https://github.com/rishabhsahilll/rishabh-search-engine/blob/main/netra-app-ss/4.jpeg?raw=true" alt="Screenshot 4" onclick="openModal(3)">
+            <img src="https://github.com/rishabhsahilll/rishabh-search-engine/blob/main/netra-app-ss/5.jpeg?raw=true" alt="Screenshot 5" onclick="openModal(4)">
+            <img src="https://github.com/rishabhsahilll/rishabh-search-engine/blob/main/netra-app-ss/6.jpeg?raw=true" alt="Screenshot 6" onclick="openModal(5)">
+            <img src="https://github.com/rishabhsahilll/rishabh-search-engine/blob/main/netra-app-ss/7.jpeg?raw=true" alt="Screenshot 7" onclick="openModal(6)">
+            <img src="https://github.com/rishabhsahilll/rishabh-search-engine/blob/main/netra-app-ss/8.jpeg?raw=true" alt="Screenshot 8" onclick="openModal(7)">
+            <img src="https://github.com/rishabhsahilll/rishabh-search-engine/blob/main/netra-app-ss/9.jpeg?raw=true" alt="Screenshot 9" onclick="openModal(8)">
+            <img src="https://github.com/rishabhsahilll/rishabh-search-engine/blob/main/netra-app-ss/10.jpeg?raw=true" alt="Screenshot 10" onclick="openModal(9)">
+            <img src="https://github.com/rishabhsahilll/rishabh-search-engine/blob/main/netra-app-ss/11.jpeg?raw=true" alt="Screenshot 11" onclick="openModal(10)">
+            <img src="https://github.com/rishabhsahilll/rishabh-search-engine/blob/main/netra-app-ss/12.jpeg?raw=true" alt="Screenshot 12" onclick="openModal(11)">
+            <img src="https://github.com/rishabhsahilll/rishabh-search-engine/blob/main/netra-app-ss/13.jpeg?raw=true" alt="Screenshot 13" onclick="openModal(12)">
+            <img src="https://github.com/rishabhsahilll/rishabh-search-engine/blob/main/netra-app-ss/14.jpeg?raw=true" alt="Screenshot 14" onclick="openModal(13)">
+        </div>
+
+        <h5>Features</h5>
+        <ul class="features-list">
+            <li>Anonymous User Profiles: Engage without revealing your real identity.</li>
+            <li>Unedited Video Uploads: Share authentic content without editing options.</li>
+            <li>Developer-Controlled Post Deletion: Ensures the integrity of shared content.</li>
+            <li>Verified User Profiles: Users with a blue tick have visible profiles, allowing anyone to view their identity.</li>
+            <li>Ridiculously lightweight APK</li>
+        </ul>
+
+        <h5>Release Updates</h5>
+        <p>Version 1.5.2: Added new features, improved performance, and fixed bugs.</p>
+        <p><a href="https://netrarsy.pythonanywhere.com/654656854-6541654165-685416541-655412/privacy-&-policy">Privacy Policy</a></p>
+        <p><a href="https://netrarsy.pythonanywhere.com/656898-234235323-23143534-23454353/license">License</a></p>
+        <p><a href="https://netrarsy.pythonanywhere.com/432354-43564443-564645564/term-&-condition">Terms & Condition</a></p>
+
+        <!-- <h5>Disclaimer</h5>
+        <p>
+            This project and its contents are not affiliated with, funded, authorized, endorsed by, or in any way associated with YouTube, Google LLC or any of its affiliates and subsidiaries.
+        </p>
+        <p>
+            Any trademark, service mark, trade name, or other intellectual property rights used in this project are owned by the respective owners.
+        </p> -->
+
+
+        <h5>Developers</h5>
+        <p class="developers">
+            <a href="https://github.com/rishabhsahilll">@rishabhsahilll</a>, 
+            <a href="https://www.instagram.com/_._._._.raj_shivam____/">@rsj_shivam</a>
+        </p>
+    </div>
+
+   <!-- Fullscreen Modal -->
+    <div class="modal-fullscreen" id="screenshotModal">
+        <button class="close-btn" onclick="closeModal()" style="z-index: inherit;">×</button>
+        <div id="carouselScreenshots" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner" id="carouselImages">
+                <!-- Images will be inserted here dynamically -->
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselScreenshots" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselScreenshots" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Function to open modal with screenshots
+        function openModal(index) {
+            const images = [
+                'https://github.com/rishabhsahilll/rishabh-search-engine/blob/main/netra-app-ss/1.jpeg?raw=true',
+                'https://github.com/rishabhsahilll/rishabh-search-engine/blob/main/netra-app-ss/2.jpeg?raw=true',
+                'https://github.com/rishabhsahilll/rishabh-search-engine/blob/main/netra-app-ss/3.jpeg?raw=true',
+                'https://github.com/rishabhsahilll/rishabh-search-engine/blob/main/netra-app-ss/4.jpeg?raw=true',
+                'https://github.com/rishabhsahilll/rishabh-search-engine/blob/main/netra-app-ss/5.jpeg?raw=true',
+                'https://github.com/rishabhsahilll/rishabh-search-engine/blob/main/netra-app-ss/6.jpeg?raw=true',
+                'https://github.com/rishabhsahilll/rishabh-search-engine/blob/main/netra-app-ss/7.jpeg?raw=true',
+                'https://github.com/rishabhsahilll/rishabh-search-engine/blob/main/netra-app-ss/8.jpeg?raw=true',
+                'https://github.com/rishabhsahilll/rishabh-search-engine/blob/main/netra-app-ss/9.jpeg?raw=true',
+                'https://github.com/rishabhsahilll/rishabh-search-engine/blob/main/netra-app-ss/10.jpeg?raw=true',
+                'https://github.com/rishabhsahilll/rishabh-search-engine/blob/main/netra-app-ss/11.jpeg?raw=true',
+                'https://github.com/rishabhsahilll/rishabh-search-engine/blob/main/netra-app-ss/12.jpeg?raw=true',
+                'https://github.com/rishabhsahilll/rishabh-search-engine/blob/main/netra-app-ss/13.jpeg?raw=true',
+                'https://github.com/rishabhsahilll/rishabh-search-engine/blob/main/netra-app-ss/14.jpeg?raw=true'
+                
+            ];
+
+            const carouselImages = images.map((src, idx) => {
+                return `<div class="carousel-item ${idx === index ? 'active' : ''}">
+                            <img src="${src}" class="d-block w-100" alt="Screenshot ${idx + 1}">
+                        </div>`;
+            }).join('');
+
+            document.getElementById('carouselImages').innerHTML = carouselImages;
+            document.getElementById('screenshotModal').style.display = 'flex';
+        }
+
+        // Function to close the modal
+        function closeModal() {
+            document.getElementById('screenshotModal').style.display = 'none';
+        }
+    </script>
+
+
+</body>
+</html>

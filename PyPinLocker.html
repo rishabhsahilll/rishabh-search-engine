@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hacker PIN Generator</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
     <style>
         body {
             background-color: black;
@@ -50,6 +51,7 @@
             padding: 10px;
             font-size: 1rem;
             width: 30%;
+            height: 100%; /* Make button match pre element height */
         }
 
         /* Style for pre element (output) */
@@ -65,7 +67,6 @@
         }
 
         @media (max-width: 600px) {
-
             input,
             button {
                 width: 45%;
@@ -74,6 +75,10 @@
 
             pre {
                 height: 200px;
+            }
+
+            button {
+                height: 200px; /* Same height as pre on small screens */
             }
 
             .input-group {
@@ -92,7 +97,7 @@
             <button onclick="generatePinCombinations()">Generate</button>
         </div>
         <pre id="output"></pre>
-        <button id="downloadBtn" style="display: none;" onclick="downloadTxtFile()">Download PINs</button>
+        <button id="downloadBtn" style="display: none;" onclick="downloadTxtFile()">Download PIN'S</button>
     </div>
 
     <script>
@@ -141,20 +146,8 @@
         function downloadTxtFile() {
             const pinList = window.pinList.join('\n');
             const blob = new Blob([pinList], { type: 'text/plain' });
-            const link = document.createElement('a');
-            link.href = URL.createObjectURL(blob);
-            link.download = `${numDigits}_digit_${Math.pow(10, numDigits)}_password_list.txt`;
-
-            // Add link to the body
-            document.body.appendChild(link);
-
-            // Simulate a click event to download
-            link.click();
-
-            // Clean up and remove the link
-            document.body.removeChild(link);
+            saveAs(blob, `${numDigits}_digit_${Math.pow(10, numDigits)}_password_list.txt`);
         }
-
     </script>
 </body>
 

@@ -37,6 +37,8 @@
             border: 1px solid #00ff00;
             height: 300px;
             overflow-y: scroll;
+            white-space: pre-wrap;
+            word-wrap: break-word;
         }
 
         @media (max-width: 600px) {
@@ -53,7 +55,7 @@
     <div class="container">
         <h1>PIN Generator</h1>
         <label for="numDigits">Enter the number of digits for the PIN:</label>
-        <input type="number" id="numDigits" min="1" max="5" style="width: 94%;" />
+        <input type="number" id="numDigits" min="1" max="10" style="width: 94%;" />
         <button onclick="generatePinCombinations()">Generate</button>
         <pre id="output"></pre>
         <button id="copyBtn" style="display: none;" onclick="copyPins()">Copy PINs</button>
@@ -63,49 +65,39 @@
         let numDigits; // Global variable to store the number of digits
         let pinList = []; // List to store generated PINs
 
-        async function generatePinCombinations() {
+        function generatePinCombinations() {
             numDigits = parseInt(document.getElementById('numDigits').value);
             const output = document.getElementById('output');
             const copyBtn = document.getElementById('copyBtn');
             output.innerHTML = ''; // Clear previous output
             copyBtn.style.display = 'none'; // Hide the copy button initially
 
-            if (isNaN(numDigits) || numDigits < 1 || numDigits > 5) {
-                output.innerHTML = 'Please enter a valid number between 1 and 5.';
+            if (isNaN(numDigits) || numDigits < 1 || numDigits > 10) {
+                output.innerHTML = 'Please enter a valid number between 1 and 10.';
                 return;
             }
 
             const digits = '0123456789';
-            let currentCount = 0;
+            pinList = []; // Reset the pinList
 
-            async function generate(current, remaining) {
+            function generate(current, remaining) {
                 if (remaining === 0) {
-                    const pin = current;
+                    const pin = current.padStart(numDigits, '0'); // Ensure leading zeros
                     pinList.push(pin); // Add the generated PIN to the list
-
-                    // Display the pin in real-time like a terminal
-                    const newLine = document.createElement('div');
-                    newLine.textContent = pin;
-                    output.appendChild(newLine);
-                    output.scrollTop = output.scrollHeight; // Scroll to the bottom of the output
-
-                    currentCount++;
-                    if (currentCount % 100 === 0) {
-                        await new Promise(resolve => setTimeout(resolve, 0)); // Allow UI to update and simulate hacking speed
-                    }
                 } else {
                     for (let i = 0; i < digits.length; i++) {
-                        await generate(current + digits[i], remaining - 1);
+                        generate(current + digits[i], remaining - 1);
                     }
                 }
             }
 
-            await generate('', numDigits);
+            generate('', numDigits); // Start the generation
+            output.innerHTML = '[' + pinList.map(pin => `'${pin}'`).join(', ') + ']';
             copyBtn.style.display = 'block'; // Show the copy button after generation is complete
         }
 
         function copyPins() {
-            const pinListText = pinList.join('\n');
+            const pinListText = '[' + pinList.map(pin => `'${pin}'`).join(', ') + ']';
             navigator.clipboard.writeText(pinListText).then(function() {
                 alert('PINs copied to clipboard!');
             }, function(err) {

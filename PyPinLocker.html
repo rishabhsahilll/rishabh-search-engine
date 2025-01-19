@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,6 +12,7 @@
             font-family: 'Courier New', Courier, monospace;
             text-align: center;
             padding: 20px;
+            margin: 0;
         }
 
         .container {
@@ -19,16 +21,38 @@
             margin: auto;
         }
 
-        input, button {
+        /* Flexbox for input and button on the same row */
+        .input-group {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 10px 0;
+        }
+
+        label {
+            margin-right: 10px;
+        }
+
+        input {
             background-color: black;
             color: #00ff00;
             border: 1px solid #00ff00;
             padding: 10px;
-            margin: 10px;
             font-size: 1rem;
-            width: 100%;
+            width: 60%;
+            margin-right: 10px;
         }
 
+        button {
+            background-color: black;
+            color: #00ff00;
+            border: 1px solid #00ff00;
+            padding: 10px;
+            font-size: 1rem;
+            width: 30%;
+        }
+
+        /* Style for pre element (output) */
         pre {
             background-color: black;
             color: #00ff00;
@@ -37,75 +61,101 @@
             border: 1px solid #00ff00;
             height: 300px;
             overflow-y: scroll;
+            margin-top: 20px;
         }
 
         @media (max-width: 600px) {
+
+            input,
+            button {
+                width: 45%;
+                /* Make input and button smaller on mobile */
+            }
+
             pre {
                 height: 200px;
+            }
+
+            .input-group {
+                flex-direction: column;
             }
         }
     </style>
 </head>
+
 <body>
     <div class="container">
         <h1>PIN Generator</h1>
-        <label for="numDigits">Enter the number of digits for the PIN:</label>
-        <input type="number" id="numDigits" min="1" max="5" />
-        <button onclick="generatePinCombinations()">Generate</button>
+        <div class="input-group">
+            <label for="numDigits">Enter the number of digits for the PIN:</label>
+            <input type="number" id="numDigits" min="1" max="5" />
+            <button onclick="generatePinCombinations()">Generate</button>
+        </div>
         <pre id="output"></pre>
         <button id="downloadBtn" style="display: none;" onclick="downloadTxtFile()">Download PINs</button>
     </div>
 
     <script>
-let numDigits; // Global variable to store the number of digits
+        let numDigits; // Global variable to store the number of digits
 
-async function generatePinCombinations() {
-    numDigits = parseInt(document.getElementById('numDigits').value);
-    const output = document.getElementById('output');
-    const downloadBtn = document.getElementById('downloadBtn');
-    output.innerHTML = ''; // Clear previous output
-    downloadBtn.style.display = 'none'; // Hide the download button initially
+        async function generatePinCombinations() {
+            numDigits = parseInt(document.getElementById('numDigits').value);
+            const output = document.getElementById('output');
+            const downloadBtn = document.getElementById('downloadBtn');
+            output.innerHTML = ''; // Clear previous output
+            downloadBtn.style.display = 'none'; // Hide the download button initially
 
-    if (isNaN(numDigits) || numDigits < 1 || numDigits > 5) {
-        output.innerHTML = 'Please enter a valid number between 1 and 5.';
-        return;
-    }
-
-    const digits = '0123456789';
-    let pinList = [];
-    let currentCount = 0;
-
-    async function generate(current, remaining) {
-        if (remaining === 0) {
-            const newLine = document.createElement('div');
-            newLine.textContent = current;
-            output.appendChild(newLine);
-            pinList.push(current);
-            currentCount++;
-            if (currentCount % 1000 === 0) {
-                await new Promise(resolve => setTimeout(resolve, 0)); // Allow UI to update
+            if (isNaN(numDigits) || numDigits < 1 || numDigits > 5) {
+                output.innerHTML = 'Please enter a valid number between 1 and 5.';
+                return;
             }
-        } else {
-            for (let i = 0; i < digits.length; i++) {
-                await generate(current + digits[i], remaining - 1);
+
+            const digits = '0123456789';
+            let pinList = [];
+            let currentCount = 0;
+
+            async function generate(current, remaining) {
+                if (remaining === 0) {
+                    const newLine = document.createElement('div');
+                    newLine.textContent = current;
+                    output.appendChild(newLine);
+                    pinList.push(current);
+                    currentCount++;
+                    if (currentCount % 1000 === 0) {
+                        await new Promise(resolve => setTimeout(resolve, 0)); // Allow UI to update
+                    }
+                    // Scroll to the bottom
+                    output.scrollTop = output.scrollHeight;
+                } else {
+                    for (let i = 0; i < digits.length; i++) {
+                        await generate(current + digits[i], remaining - 1);
+                    }
+                }
             }
+
+            await generate('', numDigits);
+            downloadBtn.style.display = 'block'; // Show the download button after generation
+            window.pinList = pinList; // Store the list for download
         }
-    }
 
-    await generate('', numDigits);
-    downloadBtn.style.display = 'block'; // Show the download button after generation
-    window.pinList = pinList; // Store the list for download
-}
+        function downloadTxtFile() {
+            const pinList = window.pinList.join('\n');
+            const blob = new Blob([pinList], { type: 'text/plain' });
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            link.download = `${numDigits}_digit_${Math.pow(10, numDigits)}_password_list.txt`;
 
-function downloadTxtFile() {
-    const pinList = window.pinList.join('\n');
-    const blob = new Blob([pinList], { type: 'text/plain' });
-    const link = document.createElement('a');
-    link.href = URL.createObjectURL(blob);
-    link.download = `${numDigits}_digit_${Math.pow(10, numDigits)}_password_list.txt`; // Corrected filename format
-    link.click();
-}
+            // Add link to the body
+            document.body.appendChild(link);
+
+            // Simulate a click event to download
+            link.click();
+
+            // Clean up and remove the link
+            document.body.removeChild(link);
+        }
 
     </script>
 </body>
+
 </html>

@@ -45,6 +45,19 @@
             word-wrap: break-word;
         }
 
+        .typing-effect {
+            display: inline;
+            border-right: 2px solid #00ff00;
+            white-space: nowrap;
+            overflow: hidden;
+            animation: blink 0.7s step-end infinite;
+        }
+
+        @keyframes blink {
+            from, to { border-color: transparent; }
+            50% { border-color: #00ff00; }
+        }
+
         @media (max-width: 600px) {
             pre {
                 height: 200px;
@@ -56,7 +69,7 @@
 </head>
 <body>
     <div class="container">
-        <h1>PIN Generator</h1>
+        <h1><span class="typing-effect" id="dynamicText">PIN Generator</span></h1>
         <label for="numDigits">Enter the number of digits for the PIN:</label>
         <input type="number" id="numDigits" min="1" max="10" />
         <button onclick="generatePinCombinations()">Generate</button>
@@ -66,6 +79,41 @@
     </div>
 
     <script>
+        const words = ["PIN Generator", "RISHABH","SAHIL", "RSY", "Hacking", "Cybersecurity"];
+        let wordIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+        const typingSpeed = 150;
+        const erasingSpeed = 100;
+        const newWordDelay = 2000;
+        const textElement = document.getElementById('dynamicText');
+
+        function typeEffect() {
+            const currentWord = words[wordIndex];
+            if (isDeleting) {
+                charIndex--;
+                textElement.innerHTML = currentWord.substring(0, charIndex);
+            } else {
+                charIndex++;
+                textElement.innerHTML = currentWord.substring(0, charIndex);
+            }
+
+            if (!isDeleting && charIndex === currentWord.length) {
+                isDeleting = true;
+                setTimeout(typeEffect, newWordDelay);
+            } else if (isDeleting && charIndex === 0) {
+                isDeleting = false;
+                wordIndex = (wordIndex + 1) % words.length;
+                setTimeout(typeEffect, typingSpeed);
+            } else {
+                setTimeout(typeEffect, isDeleting ? erasingSpeed : typingSpeed);
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            setTimeout(typeEffect, newWordDelay);
+        });
+
         let pinList = [];
         let numDigits;
 

@@ -63,10 +63,10 @@
     </div>
 
     <script>
-        let numDigits;
         let pinList = [];
+        let numDigits; // Moved outside to use globally
 
-        function generatePinCombinations() {
+        async function generatePinCombinations() {
             numDigits = parseInt(document.getElementById('numDigits').value);
             const output = document.getElementById('output');
             const copyBtn = document.getElementById('copyBtn');
@@ -80,28 +80,30 @@
                 return;
             }
 
-            const digits = '0123456789';
             pinList = [];
+            const digits = '0123456789';
 
-            function generate(current, remaining) {
+            async function generate(current, remaining) {
                 if (remaining === 0) {
                     const pin = current.padStart(numDigits, '0');
                     pinList.push(pin);
+                    output.innerHTML += `[${pinList.map(p => `'${p}'`).join(', ')}]\n`;
+                    output.scrollTop = output.scrollHeight;
+                    await new Promise(resolve => setTimeout(resolve, 0));
                 } else {
                     for (let i = 0; i < digits.length; i++) {
-                        generate(current + digits[i], remaining - 1);
+                        await generate(current + digits[i], remaining - 1);
                     }
                 }
             }
 
-            generate('', numDigits);
-            output.innerHTML = '[' + pinList.map(pin => `'${pin}'`).join(', ') + ']';
+            await generate('', numDigits);
             copyBtn.style.display = 'block';
             downloadBtn.style.display = 'block';
         }
 
         function copyPins() {
-            const pinListText = '[' + pinList.map(pin => `'${pin}'`).join(', ') + ']';
+            const pinListText = pinList.join('\n');
             navigator.clipboard.writeText(pinListText).then(function() {
                 alert('PINs copied to clipboard!');
             }, function(err) {
@@ -114,7 +116,7 @@
             const url = URL.createObjectURL(blob);
             const a = document.createElement('a');
             a.href = url;
-            a.download = `${numDigits}_digit_${Math.pow(10, numDigits)}_password_list.txt`;
+            a.download = `${numDigits}_digit_${Math.pow(10, numDigits)}_password_list.txt`; // Correct filename
             document.body.appendChild(a);
             a.click();
             document.body.removeChild(a);

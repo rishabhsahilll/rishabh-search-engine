@@ -59,18 +59,21 @@
         <button onclick="generatePinCombinations()">Generate</button>
         <pre id="output"></pre>
         <button id="copyBtn" style="display: none;" onclick="copyPins()">Copy PINs</button>
+        <button id="downloadBtn" style="display: none;" onclick="downloadPins()">Download PINs</button>
     </div>
 
     <script>
-        let numDigits; // Global variable to store the number of digits
-        let pinList = []; // List to store generated PINs
+        let numDigits;
+        let pinList = [];
 
         function generatePinCombinations() {
             numDigits = parseInt(document.getElementById('numDigits').value);
             const output = document.getElementById('output');
             const copyBtn = document.getElementById('copyBtn');
-            output.innerHTML = ''; // Clear previous output
-            copyBtn.style.display = 'none'; // Hide the copy button initially
+            const downloadBtn = document.getElementById('downloadBtn');
+            output.innerHTML = '';
+            copyBtn.style.display = 'none';
+            downloadBtn.style.display = 'none';
 
             if (isNaN(numDigits) || numDigits < 1 || numDigits > 10) {
                 output.innerHTML = 'Please enter a valid number between 1 and 10.';
@@ -78,12 +81,12 @@
             }
 
             const digits = '0123456789';
-            pinList = []; // Reset the pinList
+            pinList = [];
 
             function generate(current, remaining) {
                 if (remaining === 0) {
-                    const pin = current.padStart(numDigits, '0'); // Ensure leading zeros
-                    pinList.push(pin); // Add the generated PIN to the list
+                    const pin = current.padStart(numDigits, '0');
+                    pinList.push(pin);
                 } else {
                     for (let i = 0; i < digits.length; i++) {
                         generate(current + digits[i], remaining - 1);
@@ -91,9 +94,10 @@
                 }
             }
 
-            generate('', numDigits); // Start the generation
+            generate('', numDigits);
             output.innerHTML = '[' + pinList.map(pin => `'${pin}'`).join(', ') + ']';
-            copyBtn.style.display = 'block'; // Show the copy button after generation is complete
+            copyBtn.style.display = 'block';
+            downloadBtn.style.display = 'block';
         }
 
         function copyPins() {
@@ -103,6 +107,18 @@
             }, function(err) {
                 alert('Failed to copy: ' + err);
             });
+        }
+
+        function downloadPins() {
+            const blob = new Blob([pinList.join('\n')], { type: 'text/plain' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `${numDigits}_digit_${Math.pow(10, numDigits)}_password_list.txt`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
         }
     </script>
 </body>

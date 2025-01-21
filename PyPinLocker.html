@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hacker PIN Generator | RISHABH</title>
-    <!-- Link to Google Fonts for a digital-style font -->
     <link href="https://fonts.googleapis.com/css2?family=Major+Mono+Display&display=swap" rel="stylesheet">
     <style>
         body {
@@ -21,7 +20,7 @@
             margin: auto;
         }
 
-        input, button, pre {
+        input, button, select, pre {
             background-color: black;
             color: #00ff00;
             border: 1px solid #00ff00;
@@ -72,6 +71,13 @@
         <h1><span class="typing-effect" id="dynamicText">PIN Generator</span></h1>
         <label for="numDigits">Enter the number of digits for the PIN:</label>
         <input type="number" id="numDigits" min="1" max="10" />
+        
+        <label for="mode">Select the mode of generation:</label>
+        <select id="mode">
+            <option value="fast">Fast Mode</option>
+            <option value="slow">Slow Mode with H4c👑 Effect</option>
+        </select>
+        
         <button onclick="generatePinCombinations()">Generate</button>
         <pre id="output"></pre>
         <button id="copyBtn" style="display: none;" onclick="copyPins()">Copy PINs</button>
@@ -79,7 +85,7 @@
     </div>
 
     <script>
-        const words = ["PIN Generator", "RISHABH","SAHIL", "RSY", "Hacking", "Cybersecurity"];
+        const words = ["PIN Generator", "RISHABH", "SAHIL", "RSY", "Hacking", "Cybersecurity"];
         let wordIndex = 0;
         let charIndex = 0;
         let isDeleting = false;
@@ -117,11 +123,13 @@
         let pinList = [];
         let numDigits;
 
-        async function generatePinCombinations() {
+        function generatePinCombinations() {
             numDigits = parseInt(document.getElementById('numDigits').value);
+            const mode = document.getElementById('mode').value;
             const output = document.getElementById('output');
             const copyBtn = document.getElementById('copyBtn');
             const downloadBtn = document.getElementById('downloadBtn');
+
             output.innerHTML = '';
             copyBtn.style.display = 'none';
             downloadBtn.style.display = 'none';
@@ -132,23 +140,34 @@
             }
 
             pinList = [];
+            const totalCombinations = Math.pow(10, numDigits);
             const digits = '0123456789';
 
-            async function generate(current, remaining) {
-                if (remaining === 0) {
-                    const pin = current.padStart(numDigits, '0');
-                    pinList.push(pin);
-                    output.innerHTML += `[${pinList.map(p => `'${p}'`).join(', ')}]\n`;
-                    output.scrollTop = output.scrollHeight;
-                    await new Promise(resolve => setTimeout(resolve, 0));
-                } else {
-                    for (let i = 0; i < digits.length; i++) {
-                        await generate(current + digits[i], remaining - 1);
+            if (mode === 'fast') {
+                let allPins = '';
+                for (let i = 0; i < totalCombinations; i++) {
+                    const pin = i.toString().padStart(numDigits, '0');
+                    allPins += pin + '\n';
+                }
+                pinList = allPins.split('\n').filter(pin => pin !== '');
+                output.innerHTML = allPins;
+            } else {
+                async function generate(current, remaining) {
+                    if (remaining === 0) {
+                        const pin = current.padStart(numDigits, '0');
+                        pinList.push(pin);
+                        output.innerHTML += pin + '\n';
+                        output.scrollTop = output.scrollHeight;
+                        await new Promise(resolve => setTimeout(resolve, 50)); // Slow effect
+                    } else {
+                        for (let i = 0; i < digits.length; i++) {
+                            await generate(current + digits[i], remaining - 1);
+                        }
                     }
                 }
+                generate('', numDigits);
             }
 
-            await generate('', numDigits);
             copyBtn.style.display = 'block';
             downloadBtn.style.display = 'block';
         }
